@@ -8,10 +8,10 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useState } from "react";
-import { useMMKVBoolean } from "react-native-mmkv";
-import { useMMKVString } from "react-native-mmkv";
+import { useMMKVBoolean,useMMKVString } from "react-native-mmkv";
 import StyledText from "../../components/StyledText";
 import { useRouter } from "expo-router";
+import { login } from "@/api/auth";
 
 export default function Login() {
   const [darkmode, setDarkMode] = useMMKVBoolean("darkmode");
@@ -51,30 +51,10 @@ export default function Login() {
     setErrors((prevState) => ({ ...prevState, [name]: "" }));
   };
 
-  const login = async () => {
-    try {
-      const res = await fetch("https://dummyjson.com/user/login", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-
-      setAccessToken(data.accessToken);
-
-      if(data.accessToken) {
-        router.push("/(tabs)");
-      }
-
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
-  }
-
   const handleSubmit = () => {
     if (!validate()) return;
 
-    login();
+    login(formData);
   };
 
   return (

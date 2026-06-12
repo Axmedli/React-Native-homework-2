@@ -16,9 +16,9 @@ export default function HomeScreen() {
         <Text className="mb-6 text-center text-base text-slate-600 ">
           Expo SDK 56 + Tailwind CSS
         </Text>
-        <TouchableOpacity onPress={() => {router.push('/register')}} className="rounded-xl bg-blue-500 px-6 py-3 active:bg-blue-600">
+        <TouchableOpacity onPress={() => {router.push('/user')}} className="rounded-xl bg-blue-500 px-6 py-3 active:bg-blue-600">
           <Text className="text-center text-base font-semibold text-white">
-            Go to register page
+            Go to user page
           </Text>
         </TouchableOpacity>
 
